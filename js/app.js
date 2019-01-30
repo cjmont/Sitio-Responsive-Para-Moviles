@@ -562,10 +562,18 @@ function cargarDatos () {
 
       body: JSON.stringify(catalogo_post)
       }).then(res=>res.json())
-      .then(res => toastr.success(res.message))
-      .then(function(response) {
-                console.log(response.status)
-         });
+      .then(res =>{       
+            if(res.estado == "200"){
+               toastr.success(res.message)  
+                window.location.href = "http://200.10.147.7/catalogo.pdf";
+                console.log(res.estado);
+            }else if (res.estado == "400"){
+               toastr.success(res.message)
+              
+            }else{
+                toastr.success(res.message)
+            }
+            });
       
       
 
